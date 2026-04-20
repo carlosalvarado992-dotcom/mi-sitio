@@ -4,6 +4,9 @@
     <title>Lava Fast</title>
     <meta charset="UTF-8">
 
+    <!-- 🔥 IMPORTANTE PARA CELULAR -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,9 +35,10 @@
         .btn {
             background: blue;
             color: white;
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 20px;
             text-decoration: none;
+            display: inline-block;
         }
 
         .hero {
@@ -74,6 +78,10 @@
             padding: 40px 20px;
         }
 
+        .features h2 {
+            text-align: center;
+        }
+
         .feature-box {
             background: white;
             padding: 20px;
@@ -83,6 +91,10 @@
 
         .gallery {
             padding: 40px 20px;
+        }
+
+        .gallery h2 {
+            text-align: center;
         }
 
         .gallery img {
@@ -96,6 +108,37 @@
             color: white;
             padding: 30px 20px;
             text-align: center;
+        }
+
+        /* 📱 RESPONSIVE PARA CELULARES */
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 28px;
+            }
+
+            .hero img {
+                max-width: 100%;
+            }
+
+            .card {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -121,7 +164,7 @@
         </div>
     </div>
 
-    <img src="lavadora1.jpg">
+    <img src="lavadora1.jpg" alt="Lavadora">
 </section>
 
 <section class="features">
@@ -145,8 +188,8 @@
 
 <section class="gallery">
     <h2>Galería</h2>
-    <img src="lavadora2.jpg">
-    <img src="lavadora3.jpg">
+    <img src="lavadora2.jpg" alt="Lavadora 2">
+    <img src="lavadora3.jpg" alt="Lavadora 3">
 </section>
 
 <footer>
