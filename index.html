@@ -1,200 +1,555 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Lava Fast</title>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lito Fast – Conjunto Empresarial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- 🔥 IMPORTANTE PARA CELULAR -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    :root {
+      --negro:    #0f0f0f;
+      --azul:     #1a3a6b;
+      --azul-v:   #1e4fa0;
+      --naranja:  #f5620f;
+      --crema:    #f7f5f0;
+      --blanco:   #ffffff;
+      --gris:     #6b7280;
+      --gris-l:   #e8e5df;
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f1f5f9;
-        }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--crema);
+      color: var(--negro);
+      min-height: 100vh;
+    }
 
-        header {
-            background: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-        }
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--negro);
+      color: rgba(255,255,255,.55);
+      font-size: .78rem;
+      letter-spacing: .5px;
+      text-align: center;
+      padding: 8px 16px;
+    }
+    .topbar span { color: var(--naranja); font-weight: 500; }
 
-        .logo {
-            font-weight: bold;
-            font-size: 20px;
-        }
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--azul) 0%, var(--azul-v) 60%, #0d2a55 100%);
+      padding: 64px 24px 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .logo span {
-            color: blue;
-        }
+    /* fondo decorativo */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 110%, rgba(245,98,15,.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% -10%, rgba(255,255,255,.07) 0%, transparent 45%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 56px;
+      background: var(--crema);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
 
-        .btn {
-            background: blue;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            display: inline-block;
-        }
+    .logo-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
 
-        .hero {
-            padding: 40px 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-        }
+    .logo-icon {
+      width: 52px; height: 52px;
+      background: var(--naranja);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 24px rgba(245,98,15,.4);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 8px 24px rgba(245,98,15,.4); }
+      50%      { box-shadow: 0 12px 36px rgba(245,98,15,.65); }
+    }
 
-        .hero-text {
-            flex: 1;
-        }
+    .logo-text {
+      text-align: left;
+    }
+    .logo-text .brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .logo-text .brand span { color: var(--naranja); }
+    .logo-text .sub {
+      font-size: .72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
 
-        .hero-text h1 {
-            font-size: 40px;
-        }
+    .hero-tagline {
+      position: relative;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 5vw, 2.6rem);
+      font-weight: 600;
+      color: #fff;
+      max-width: 540px;
+      margin: 0 auto 14px;
+      line-height: 1.2;
+    }
+    .hero-tagline em {
+      font-style: normal;
+      color: var(--naranja);
+    }
 
-        .hero-text span {
-            color: blue;
-        }
+    .hero-desc {
+      position: relative;
+      color: rgba(255,255,255,.65);
+      font-size: .95rem;
+      max-width: 360px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
 
-        .hero img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-        }
+    .stats-row {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 36px;
+    }
+    .stat { text-align: center; }
+    .stat .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+    .stat .num span { color: var(--naranja); }
+    .stat .lbl {
+      font-size: .72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-top: 4px;
+    }
 
-        .card {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-        }
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      margin: -44px auto 44px;
+      padding: 0 20px;
+    }
 
-        .features {
-            padding: 40px 20px;
-        }
+    .card {
+      background: var(--blanco);
+      border-radius: 18px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 28px rgba(26,58,107,.08);
+      border: 1px solid var(--gris-l);
+      transition: transform .25s, box-shadow .25s;
+      animation: rise .5s ease both;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(26,58,107,.13);
+    }
+    @keyframes rise {
+      from { opacity:0; transform: translateY(20px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .card:nth-child(2) { animation-delay: .1s; }
+    .card:nth-child(3) { animation-delay: .18s; }
+    .card:nth-child(4) { animation-delay: .26s; }
+    .card:nth-child(5) { animation-delay: .34s; }
 
-        .features h2 {
-            text-align: center;
-        }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--azul), var(--azul-v));
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .card-icon.orange { background: linear-gradient(135deg, #e84e00, var(--naranja)); }
 
-        .feature-box {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-        }
+    .card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--azul);
+    }
 
-        .gallery {
-            padding: 40px 20px;
-        }
+    /* ── AVISOS ── */
+    .aviso-item {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gris-l);
+    }
+    .aviso-item:last-child { border-bottom: none; }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--naranja);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .dot.blue { background: var(--azul-v); }
+    .aviso-item p { font-size: .92rem; line-height: 1.5; color: var(--negro); }
+    .aviso-item .tag {
+      font-size: .7rem; font-weight: 500;
+      letter-spacing: .5px; text-transform: uppercase;
+      color: var(--gris); margin-top: 3px;
+    }
 
-        .gallery h2 {
-            text-align: center;
-        }
+    /* ── SERVICIOS ── */
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .serv-item {
+      background: var(--crema);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .87rem;
+      font-weight: 500;
+      color: var(--azul);
+    }
+    .serv-item .ico { font-size: 1rem; }
 
-        .gallery img {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 10px;
-        }
+    /* ── CONTACTO ── */
+    .contacto-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gris-l);
+    }
+    .contacto-row:last-child { border-bottom: none; }
+    .c-ico {
+      width: 36px; height: 36px;
+      background: var(--crema);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contacto-row .lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; color: var(--gris); }
+    .contacto-row .val { font-size: .93rem; font-weight: 500; }
 
-        footer {
-            background: #0f172a;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
+    /* ── HORARIO ── */
+    .horario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .h-item {
+      background: var(--crema);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .h-item .dia  { font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; color: var(--gris); }
+    .h-item .hora { font-size: .92rem; font-weight: 500; color: var(--azul); margin-top: 2px; }
 
-        /* 📱 RESPONSIVE PARA CELULARES */
-        @media (max-width: 768px) {
+    /* ── MAPA/UBICACIÓN ── */
+    .map-placeholder {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, #dce8f7, #c9dcf5);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      font-size: .85rem;
+      color: var(--azul);
+      font-weight: 500;
+      border: 1px dashed #a0bce0;
+    }
+    .map-placeholder .map-ico { font-size: 2rem; }
 
-            header {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
+    .dir-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid var(--gris-l);
+    }
+    .dir-row:last-child { border-bottom: none; }
+    .dir-row .d-ico { font-size: 1rem; margin-top: 1px; }
+    .dir-row p { font-size: .88rem; color: var(--negro); line-height: 1.4; }
+    .dir-row .lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; color: var(--gris); }
 
-            .btn {
-                width: 100%;
-            }
+    /* ── URGENCIAS BANNER ── */
+    .urgencias {
+      max-width: 960px;
+      margin: 0 auto 44px;
+      padding: 0 20px;
+    }
+    .urgencias-inner {
+      background: linear-gradient(135deg, var(--negro) 0%, #1c1c1c 100%);
+      border-radius: 18px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border: 1px solid #2a2a2a;
+      animation: rise .5s .42s ease both;
+    }
+    .urgencias-text .urg-label {
+      font-size: .72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--naranja); font-weight: 500; margin-bottom: 4px;
+    }
+    .urgencias-text .urg-titulo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 700; color: #fff;
+    }
+    .urgencias-text .urg-desc {
+      font-size: .83rem; color: rgba(255,255,255,.5); margin-top: 3px;
+    }
+    .urg-num {
+      background: var(--naranja);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 12px 24px;
+      border-radius: 12px;
+      white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(245,98,15,.4);
+    }
 
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 28px;
-            }
-
-            .hero img {
-                max-width: 100%;
-            }
-
-            .card {
-                text-align: center;
-            }
-        }
-    </style>
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px 16px;
+      font-size: .8rem;
+      color: var(--gris);
+      border-top: 1px solid var(--gris-l);
+    }
+    footer .brand-f {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      color: var(--azul);
+    }
+    footer .brand-f span { color: var(--naranja); }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <div class="logo">Lava <span>Fast</span></div>
-    <a href="#" class="btn">4528935</a>
-</header>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    Horario de atención: Lun–Vie 7am–6pm &nbsp;·&nbsp; <span>Urgencias 24/7: 318 500 0099</span>
+  </div>
 
-<section class="hero">
-    <div class="hero-text">
-        <h1>La forma más <span>rápida</span> de lavar tu ropa</h1>
-        <p>Alquila lavadoras de última generación sin complicaciones.</p>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="logo-wrap">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text">
+        <div class="brand">Lito<span>Fast</span></div>
+        <div class="sub">Soluciones Eléctricas & Mantenimiento</div>
+      </div>
+    </div>
+    <div class="hero-tagline">Rápidos, confiables y <em>siempre presentes</em></div>
+    <p class="hero-desc">Portal oficial de clientes y personal. Consulta avisos, servicios y contacto directo.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="num">12<span>+</span></div><div class="lbl">Años de exp.</div></div>
+      <div class="stat"><div class="num">840</div><div class="lbl">Clientes</div></div>
+      <div class="stat"><div class="num">98<span>%</span></div><div class="lbl">Satisfacción</div></div>
+    </div>
+  </header>
 
-        <div class="card">
-            <strong>Administrador:</strong> Usuario Demo
+  <!-- GRID DE CARDS -->
+  <div class="grid">
+
+    <!-- Avisos -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon orange">📢</div>
+        <h2>Avisos internos</h2>
+      </div>
+
+      <div class="aviso-item">
+        <div class="dot"></div>
+        <div>
+          <p>Mantenimiento preventivo en zona norte</p>
+          <div class="tag">Martes 29 · 8:00 am – 12:00 m</div>
         </div>
-
-        <div class="card">
-            <strong>Teléfono:</strong> 0000000
+      </div>
+      <div class="aviso-item">
+        <div class="dot blue"></div>
+        <div>
+          <p>Reunión de equipo técnico — Sala 3</p>
+          <div class="tag">Viernes 2 de mayo · 4:00 pm</div>
         </div>
+      </div>
+      <div class="aviso-item">
+        <div class="dot"></div>
+        <div>
+          <p>Actualización de uniformes y EPP obligatorio</p>
+          <div class="tag">A partir del lunes 5 de mayo</div>
+        </div>
+      </div>
+      <div class="aviso-item">
+        <div class="dot blue"></div>
+        <div>
+          <p>Cierre de facturación mes de abril</p>
+          <div class="tag">Hoy · Antes de las 5:00 pm</div>
+        </div>
+      </div>
     </div>
 
-    <img src="lavadora1.jpg" alt="Lavadora">
-</section>
-
-<section class="features">
-    <h2>¿Por qué elegir Lava Fast?</h2>
-
-    <div class="feature-box">
-        <h3>Entrega Inmediata</h3>
-        <p>Recibe tu lavadora en menos de 2 horas.</p>
+    <!-- Servicios -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔧</div>
+        <h2>Nuestros servicios</h2>
+      </div>
+      <div class="servicios-grid">
+        <div class="serv-item"><span class="ico">⚡</span> Instalaciones</div>
+        <div class="serv-item"><span class="ico">🔌</span> Tableros</div>
+        <div class="serv-item"><span class="ico">💡</span> Iluminación</div>
+        <div class="serv-item"><span class="ico">🛠️</span> Correctivo</div>
+        <div class="serv-item"><span class="ico">📋</span> Peritajes</div>
+        <div class="serv-item"><span class="ico">🏗️</span> Proyectos</div>
+        <div class="serv-item"><span class="ico">📡</span> Redes datos</div>
+        <div class="serv-item"><span class="ico">🔒</span> CCTV</div>
+      </div>
     </div>
 
-    <div class="feature-box">
-        <h3>Mantenimiento Incluido</h3>
-        <p>No te preocupes por fallas.</p>
+    <!-- Contacto -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📞</div>
+        <h2>Contacto</h2>
+      </div>
+
+      <div class="contacto-row">
+        <div class="c-ico">👤</div>
+        <div>
+          <div class="lbl">Gerente general</div>
+          <div class="val">Carlos Lito Arévalo</div>
+        </div>
+      </div>
+      <div class="contacto-row">
+        <div class="c-ico">📱</div>
+        <div>
+          <div class="lbl">Celular / WhatsApp</div>
+          <div class="val">318 500 0088</div>
+        </div>
+      </div>
+      <div class="contacto-row">
+        <div class="c-ico">☎️</div>
+        <div>
+          <div class="lbl">Línea fija</div>
+          <div class="val">(601) 345 7890</div>
+        </div>
+      </div>
+      <div class="contacto-row">
+        <div class="c-ico">✉️</div>
+        <div>
+          <div class="lbl">Correo</div>
+          <div class="val">contacto@litofast.co</div>
+        </div>
+      </div>
     </div>
 
-    <div class="feature-box">
-        <h3>Precios Flexibles</h3>
-        <p>Planes adaptados a ti.</p>
+    <!-- Horario -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🕐</div>
+        <h2>Horarios de atención</h2>
+      </div>
+      <div class="horario-grid">
+        <div class="h-item"><div class="dia">Lunes – Viernes</div><div class="hora">7:00 am – 6:00 pm</div></div>
+        <div class="h-item"><div class="dia">Sábado</div><div class="hora">8:00 am – 2:00 pm</div></div>
+        <div class="h-item"><div class="dia">Domingo</div><div class="hora">Solo urgencias</div></div>
+        <div class="h-item"><div class="dia">Festivos</div><div class="hora">Solo urgencias</div></div>
+      </div>
     </div>
-</section>
 
-<section class="gallery">
-    <h2>Galería</h2>
-    <img src="lavadora2.jpg" alt="Lavadora 2">
-    <img src="lavadora3.jpg" alt="Lavadora 3">
-</section>
+    <!-- Ubicación -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon orange">📍</div>
+        <h2>Ubicación</h2>
+      </div>
 
-<footer>
-    <p>© 2024 Lava Fast</p>
-</footer>
+      <div class="map-placeholder">
+        <span class="map-ico">🗺️</span>
+        Bogotá, Colombia
+      </div>
+
+      <div class="dir-row">
+        <span class="d-ico">🏢</span>
+        <div>
+          <div class="lbl">Dirección</div>
+          <p>Cra 18 #72-45, Of. 301 · Barrio Chapinero</p>
+        </div>
+      </div>
+      <div class="dir-row">
+        <span class="d-ico">🚇</span>
+        <div>
+          <div class="lbl">Cómo llegar</div>
+          <p>TransMilenio: Estación Calle 72</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- URGENCIAS BANNER -->
+  <div class="urgencias">
+    <div class="urgencias-inner">
+      <div class="urgencias-text">
+        <div class="urg-label">Línea de emergencias</div>
+        <div class="urg-titulo">Atención urgente 24 horas / 7 días</div>
+        <div class="urg-desc">Fallas eléctricas, cortocircuitos y emergencias industriales</div>
+      </div>
+      <div class="urg-num">📲 318 500 0099</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 <span class="brand-f">Lito<span>Fast</span></span> · NIT 901.234.567-8 · Bogotá, Colombia
+    &nbsp;·&nbsp; Todos los derechos reservados
+  </footer>
 
 </body>
 </html>
